@@ -33,4 +33,6 @@ public class Pacient {
     private String email;
     @Column(name = "pacient_phone", nullable = false, unique = true)
     private String phone;
+    @Column(name = "pacient_password", nullable = false)
+    private String password;
 }
