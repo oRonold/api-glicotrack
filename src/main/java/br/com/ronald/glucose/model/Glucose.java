@@ -1,9 +1,6 @@
 package br.com.ronald.glucose.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +18,7 @@ import java.time.LocalDateTime;
 public class Glucose {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "glucose_id")
     private Long id;
     @Column(name = "glucose_date", nullable = false)
