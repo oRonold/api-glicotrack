@@ -19,7 +19,7 @@ public class Pacient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "glucose_id")
+    @Column(name = "pacient_id")
     private Long id;
     @Column(name = "pacient_name", nullable = false)
     private String name;
@@ -36,6 +36,10 @@ public class Pacient {
 
     @OneToMany
     private List<Glucose> glucoses;
+
+    public Pacient(){
+
+    }
 
     public Pacient(PacientEnrollDTO dto, String password) {
         this.name = dto.name();
