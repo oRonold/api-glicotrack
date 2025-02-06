@@ -2,14 +2,10 @@ package br.com.ronald.glucose.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -29,4 +25,56 @@ public class Glucose {
     private String examType;
     @Column(name = "glucose_observations")
     private String observations;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pacient")
+    private Pacient pacient;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getExamDate() {
+        return examDate;
+    }
+
+    public void setExamDate(LocalDateTime examDate) {
+        this.examDate = examDate;
+    }
+
+    public Integer getGlucoseLevel() {
+        return glucoseLevel;
+    }
+
+    public void setGlucoseLevel(Integer glucoseLevel) {
+        this.glucoseLevel = glucoseLevel;
+    }
+
+    public String getExamType() {
+        return examType;
+    }
+
+    public void setExamType(String examType) {
+        this.examType = examType;
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
+    public Pacient getPacient() {
+        return pacient;
+    }
+
+    public void setPacient(Pacient pacient) {
+        this.pacient = pacient;
+    }
 }

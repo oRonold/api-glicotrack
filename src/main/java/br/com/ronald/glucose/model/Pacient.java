@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,6 +33,9 @@ public class Pacient {
     private String phone;
     @Column(name = "pacient_password", nullable = false)
     private String password;
+
+    @OneToMany
+    private List<Glucose> glucoses;
 
     public Pacient(PacientEnrollDTO dto, String password) {
         this.name = dto.name();
@@ -96,5 +100,13 @@ public class Pacient {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Glucose> getGlucoses() {
+        return glucoses;
+    }
+
+    public void setGlucoses(List<Glucose> glucoses) {
+        this.glucoses = glucoses;
     }
 }
