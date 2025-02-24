@@ -1,12 +1,11 @@
 package br.com.ronald.glucose.model;
 
+import br.com.ronald.glucose.model.dto.PacientGlucoseMeasureDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
@@ -22,13 +21,26 @@ public class Glucose {
     @Column(name = "glucose_level", nullable = false)
     private Integer glucoseLevel;
     @Column(name = "glucose_type", nullable = false)
-    private String examType;
+    private String glucoseType;
     @Column(name = "glucose_observations")
     private String observations;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "glucose_exam_type", nullable = false)
+    private FastingOrPostprandial fastingOrPostprandial;
 
     @ManyToOne
     @JoinColumn(name = "id_pacient")
     private Pacient pacient;
+
+    public Glucose(){
+
+    }
+
+    public Glucose(PacientGlucoseMeasureDTO dto){
+        this.examDate = LocalDateTime.now();
+        this.glucoseLevel = dto.glucoseLevel();
+        this.fastingOrPostprandial = FastingOrPostprandial.valueOf(dto.fastingOrPostprandial());
+    }
 
     public Long getId() {
         return id;
@@ -54,12 +66,12 @@ public class Glucose {
         this.glucoseLevel = glucoseLevel;
     }
 
-    public String getExamType() {
-        return examType;
+    public String getGlucoseType() {
+        return glucoseType;
     }
 
-    public void setExamType(String examType) {
-        this.examType = examType;
+    public void setGlucoseType(String glucoseType) {
+        this.glucoseType = glucoseType;
     }
 
     public String getObservations() {
@@ -76,5 +88,13 @@ public class Glucose {
 
     public void setPacient(Pacient pacient) {
         this.pacient = pacient;
+    }
+
+    public FastingOrPostprandial getFastingOrPostprandial() {
+        return fastingOrPostprandial;
+    }
+
+    public void setFastingOrPostprandial(FastingOrPostprandial fastingOrPostprandial) {
+        this.fastingOrPostprandial = fastingOrPostprandial;
     }
 }
