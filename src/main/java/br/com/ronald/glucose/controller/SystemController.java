@@ -17,8 +17,8 @@ public class SystemController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> login(@RequestBody @Valid LoginDTO dto){
+    public ResponseEntity<String> login(@RequestBody @Valid LoginDTO dto){
         String token = loginService.login(dto);
-        return ResponseEntity.ok(new TokenDTO(token));
+        return ResponseEntity.ok().header("Set-cookie", token).body("Authentication successfully");
     }
 }
